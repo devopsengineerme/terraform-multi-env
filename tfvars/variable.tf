@@ -18,7 +18,7 @@ variable "zone_id" {
 }
 variable "sg-name" {
   type = string
-  default = "roboshop-all-aws"
+  default = "allow-all"
 }
 
 variable "sg-description" {

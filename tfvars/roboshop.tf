@@ -1,5 +1,4 @@
-module "ec2_instance" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
+resource "aws_instance" "web" {
   ami = data.aws_ami.example.id
   for_each = var.instance_names
   instance_type = each.value
@@ -33,12 +32,12 @@ resource "aws_security_group" "roboshop-all" { #this is terraform name, for terr
     }
 
     tags = {
-        Name = "roboshop-all-aws"
+        Name = "allow-all"
     }
 }
 ######################################################################################
 resource "aws_route53_record" "www" {
-  for_each = ec2_instance
+  for_each = aws_instance.web
   zone_id = var.zone_id # Replace with your zone ID
   name    = "${each.key}.${var.domain_name}" # Replace with your subdomain, Note: not valid with "apex" domains, e.g. example.com
   type    = "A"

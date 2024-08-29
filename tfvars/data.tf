@@ -1,11 +1,10 @@
 data "aws_ami" "example" {
-  executable_users = ["self"]
   most_recent      = true
-  owners           = ["973714476881"]
+  owners           = [973714476881]
 
   filter {
     name   = "name"
-    values = ["Centos-8-DevOps-Practice-*"]
+    values = ["RHEL-9-DevOps-Practice"]
   }
 
   filter {
